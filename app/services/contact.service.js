@@ -45,6 +45,19 @@ class ContactService {
       _id: ObjectId.isValid(id) ? new ObjectId(id) : null,
     });
   }
+
+  async update(id, payload) {
+    const filter = {
+      _id: ObjectId.isValid(id) ? new ObjectId(id) : null,
+    };
+    const update = this.extractContactData(payload);
+    const result = await this.Contact.findOneAndUpdate(
+      filter,
+      { $set: update },
+      { returnDocument: "after" },
+    );
+    return result;
+  }
 }
 
 module.exports = ContactService;
