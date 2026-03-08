@@ -65,6 +65,9 @@ class ContactService {
     });
     return result;
   }
+  async findAllFavorite() {
+    return await this.find({ favorite: true });
+  }
 }
 
 module.exports = ContactService;
