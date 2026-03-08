@@ -10,7 +10,7 @@ class ContactService {
       email: payload.email,
       address: payload.address,
       phone: payload.phone,
-      favorite: payload.favorite === true,
+      favorite: payload.favorite,
     };
     // Remove undefined fields
     Object.keys(contact).forEach(
