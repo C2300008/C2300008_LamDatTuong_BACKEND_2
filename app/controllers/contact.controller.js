@@ -21,12 +21,12 @@ exports.create = async (req, res, next) => {
 exports.findAll = async (req, res, next) => {
   let documents = [];
   try {
-    const ContactService = new ContactService(MongoDB.client);
+    const contactService = new ContactService(MongoDB.client);
     const { name } = req.query;
     if (name) {
-      documents = await ContactService.findByName(name);
+      documents = await contactService.findByName(name);
     } else {
-      documents = await ContactService.find({});
+      documents = await contactService.find({});
     }
   } catch (error) {
     return next(
