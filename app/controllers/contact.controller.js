@@ -39,14 +39,14 @@ exports.findAll = async (req, res, next) => {
 exports.findOne = async (req, res, next) => {
   try {
     const contactService = new ContactService(MongoDB.client);
-    const document = await contactService.find({ _id: req.params.id });
+    const document = await contactService.findById(req.params.id);
     if (!document) {
-      return res.status(404).send({ message: "Contact not found" });
+      return next(new ApiError(404, "Contact not found"));
     }
     return res.send(document);
   } catch (error) {
     return next(
-      new ApiError(500, "Error retrieving contact with id=" + req.params.id),
+      new ApiError(500, `Error retrieving contact with id= ${req.params.id}`),
     );
   }
 };
